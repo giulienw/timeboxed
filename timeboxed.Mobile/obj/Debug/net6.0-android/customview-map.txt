@@ -1,5 +1,0 @@
-item;obj/Debug/net6.0-android/res/values/styles.xml
-resources;obj/Debug/net6.0-android/res/values/strings.xml
-resources;obj/Debug/net6.0-android/res/values/styles.xml
-string;obj/Debug/net6.0-android/res/values/strings.xml
-style;obj/Debug/net6.0-android/res/values/styles.xml
