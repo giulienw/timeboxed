@@ -1,0 +1,93 @@
+<Page
+    x:Class="timeboxed.Pages.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:timeboxed"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"    
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+	xmlns:wasm="http://uno.ui/wasm"
+	xmlns:ui="using:Uno.Toolkit.UI">
+    <Grid>
+    <ScrollViewer>
+        <Grid>
+		<Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="MasterColumn" Width="320" />
+            <ColumnDefinition x:Name="DetailColumn" Width="*" />
+        </Grid.ColumnDefinitions>
+
+          <!--<ActivityIndicator x:Name="defaultActivityIndicator" VerticalOptions="CenterAndExpand" HorizontalOptions="Fill" IsRunning="{Binding IsLoaded}" IsVisible="{Binding IsLoaded}"/>-->      
+          <ListView x:Name="BoxList" ItemsSource="{Binding Boxes}" IsItemClickEnabled="True"
+            ItemClick="SearchResults_ItemClick">
+            <ListView.ItemTemplate>
+              <DataTemplate x:DataType="models:BoxData">
+                <TextBlock Text="{Binding name}" HorizontalOptions="Center"/>
+              </DataTemplate>
+            </ListView.ItemTemplate>
+          </ListView>
+
+        <wasm:ContentPresenter
+            x:Name="DetailContentPresenter"
+            Grid.Column="1"
+            Grid.RowSpan="2"
+            Padding="24,0"
+            BorderBrush="{ThemeResource SystemControlForegroundBaseLowBrush}">
+			<wasm:ContentPresenter.ContentTemplate>
+				<DataTemplate x:DataTyoe="models:BoxData">
+				       <StackPanel>
+                                          <TextBlock Grid.Row="1" x:Name="NameLabel" HorizontalOptions="Center">
+                                                 <Run Text="Name: " />
+                                                 <Run Text="{Binding name}"/>
+                                          </TextBlock>
+                                          <TextBlock Grid.Row="2" x:Name="exposureLabel" HorizontalOptions="Center">
+                                                 <Run Text="Exposure: " />
+                                                 <Run Text="{Binding exposure}"/>
+                                          </TextBlock>
+                                          <TextBlock Grid.Row="3" x:Name="grouptagLabel" HorizontalOptions="Center">
+                                                 <Run Text="Grouptag: " />
+                                                 <Run Text="{Binding grouptag}"/>
+                                          </TextBlock>
+                                          <TextBlock Grid.Row="4" x:Name="createdAtLabel" HorizontalOptions="Center">
+                                                 <Run Text="CreatedAt: " />
+                                                 <Run Text="{Binding createdAt}"/>
+                                          </TextBlock>
+                                          <TextBlock Grid.Row="5" x:Name="updatedAtLabel" HorizontalOptions="Center">
+                                                 <Run Text="UpdatedAt: " />
+                                                 <Run Text="{Binding updatedAt}"/>
+                                          </TextBlock>
+				              <GridView ItemsSource="{Binding sensors}" x:Name="sensors">
+                                                 <GridView.ItemTemplate>
+                                                        <DataTemplate x:Key="sensortemplate">
+                                                               <Frame x:DataType="c:BoxSensor" Padding="0" CornerRadius="20" HasShadow="False">
+                                                                      <Grid RowDefinitions="42,40,*" Padding="20">
+                                                                             <TextBlock Text="{Binding title}" class="LargeTitle" />
+                                                                             <StackPanel Grid.Row="1" Spacing="0" Grid.RowSpan="3" VerticalOptions="Center">
+                                                                                    <TextBlock class="Subhead">
+                                                                                           <Run Text="0"/>
+                                                                                           <Run Text="{Binding unit}" />
+                                                                                    </TextBlock>
+                                                                             </StackPanel>
+                                                                      </Grid>
+                                                               </Frame>
+                                                        </DataTemplate>
+                                                 </GridView.ItemTemplate>
+                                          </GridView>
+                                   </StackPanel>
+				</DataTemplate>
+			</wasm:ContentPresenter.ContentTemplate>
+            <ContentPresenter.ContentTransitions>
+                <!-- Empty by default. See MasterListView_ItemClick -->
+                <TransitionCollection />
+            </ContentPresenter.ContentTransitions>
+        </wasm:ContentPresenter>
+
+        </Grid>
+    </ScrollViewer>
+    </Grid>
+</Page>

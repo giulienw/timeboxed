@@ -1,0 +1,40 @@
+{
+  // Use IntelliSense to find out which attributes exist for C# debugging
+  // Use hover for the description of the existing attributes
+  // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
+  "version": "0.2.0",
+  "configurations": [
+    {
+      // Use IntelliSense to find out which attributes exist for C# debugging
+      // Use hover for the description of the existing attributes
+      // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
+      "name": "Debug (Chrome, WebAssembly)",
+      "type": "chrome",
+      "runtimeExecutable": "canary",
+      "runtimeArgs": [
+        "--args",
+        "--remote-debugging-port=9222", 
+        "--user-data-dir=/var/folders/dg/n0gm95g533j3df8wz0nkn6xc0000gn/T/blazor-chrome-debug",
+        "http://localhost:11038/"
+      ],
+      "request": "launch",
+      "url": "http://localhost:11038",
+      "webRoot": "${workspaceFolder}/timeboxed.Wasm",
+      "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}",
+      "timeout": 300000,
+      "server": {
+        "runtimeExecutable": "dotnet",
+        "program": "run",
+        "outputCapture": "std",
+        "timeout": 300000,
+        "cwd": "${workspaceFolder}/timeboxed.Wasm"
+      }
+    },
+    {
+      "name": "Debug Mobile",
+      "type": "comet",
+      "request": "launch",
+      "preLaunchTask": "comet: Build"
+  }
+  ]
+}

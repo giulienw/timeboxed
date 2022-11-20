@@ -1,0 +1,10 @@
+{
+  "solution": {
+    "path": "timeboxed.sln",
+    "projects": [
+      "timeboxed.Mobile\\timeboxed.Mobile.csproj",
+      "timeboxed.Shared\\timeboxed.Shared.shproj",
+      "timeboxed.Wasm\\timeboxed.Wasm.csproj"
+    ]
+  }
+}
